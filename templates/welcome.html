@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ block.super }} Ana Sayfa {% endblock %}
+
+
+{% block content %}
+{% include 'defnavbar.html' %}
+
+{% block messages %} {{ block.super }} {% endblock %}
+
+<div class="jumbotron text-white bg-transparent">
+    <div class="container">
+        <h1 class="display-3">Anket Dünyası</h1>
+        <p class="lead">
+            Her konuda anketler bulabileceğin, insanlarla yarışabileceğin, <br>
+            anketler yaparak zaman geçirebileceğin dünyaya hoşgeldin!
+        </p>
+        <a href="{% url 'polls:surveys' %}"> <button class="btn btn-black" type="button">Anketlere Git</button></a>
+    </div>
+</div>
+
+<div class="jumbotron text-white bg-transparent">
+    <div class="container">
+        <h1 class="display-3"> Surveys Yaz Güncellemesi </h1>
+        <p class="lead"> Yaz Güncellemesiyle beraber gelen yenilikleri görmek için kaydol.</p>
+        <a href="{% url 'accounts:register' %}"> <button class="btn btn-black" type="button">Kaydol</button></a>
+    </div>
+</div>
+
+<div class="jumbotron text-white bg-transparent">
+    <div class="container">
+        <h1 class="display-3"> Surveys Nedir? </h1>
+        <p class="lead">Surveys, kullanıcıların anket yaptığı, diğer anketleri oyladığı,
+            sitedeki aktivitelerine göre puan kazanıp yükseldiği, anketleri eğlenceli bir hale
+            sokmuş olan bir internet sitesidir.
+        </p>
+        <a href="{% url 'accounts:register' %}"> <button class="btn btn-black" type="button">Kaydol</button></a>
+    </div>
+</div>
+
+{% endblock %}
+
+

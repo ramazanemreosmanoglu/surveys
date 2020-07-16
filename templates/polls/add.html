@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<br> <br>
+{% block title %} {{ block.super }} Anket Ekle {% endblock %}
+
+
+{% block content %}
+{% include 'auth_navbar.html' %}
+
+    {% block messages %}
+    {% include 'messages.html' %}
+    {% endblock %}
+
+<form method="POST">
+    <div class="container">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input class="btn btn-primary" type="submit" value="Anket Oluştur">
+    </div>
+
+</form>
+{% endblock %}

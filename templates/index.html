@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ block.super }} Ana Sayfa {% endblock %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+{% include 'auth_navbar.html' %}
+
+{% else %}
+{% include 'defnavbar.html' %}
+{% endif %}
+
+
+<br> <br>
+{% block messages %}
+  {{ block.super }}
+{% endblock %}
+{% if alerts %}
+{% for i in alerts %}
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+  {{ i.text }} <a class="alert-link" href="/{{ i.url }}">{{ i.title }}</a>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+{% if polls %}
+
+{% for poll in polls %}
+<div class="jumbotron text-white bg-transparent">
+  <div class="container">
+    <h1 class="display-5">{{ poll.title }}</h1>
+    {% if poll.explanation %}
+    <p class="lead">{{ poll.explanation }}</p>
+    {% endif %}
+    <p class="date">{{ poll.date }}</p>
+
+    {% if poll.author.rank == 1 %}
+    <p class="author-1" onclick="gouser('{{ poll.author.get_absolute_url }}');">{{ poll.author.username }}</p>
+    {% elif poll.author.rank == 2 %}
+    <p class="author-2" onclick="gouser('{{ poll.author.get_absolute_url }}');">{{ poll.author.username }}</p>
+    {% elif poll.author.rank == 3 %}
+    <p class="author-3" onclick="gouser('{{ poll.author.get_absolute_url }}');">{{ poll.author.username }}</p>
+    {% elif poll.author.rank == 4 %}
+    <p class="author-4" onclick="gouser('{{ poll.author.get_absolute_url }}');">{{ poll.author.username }}</p>
+    {% elif poll.author.rank == 5 %}
+    <p class="author-5" onclick="gouser('{{ poll.author.get_absolute_url }}');"><i class="fas fa-crown"></i> {{ poll.author.username }}</p>
+    {% elif poll.author.rank == 6 %}
+    <p class="author-6" onclick="gouser('{{ poll.author.get_absolute_url }}');"><i class="fas fa-crown"></i> {{ poll.author.username }} <i class="fas fa-crown"></i></p>
+    {% endif %}
+
+    <a href="{{ poll.get_absolute_url }}">
+      <button class="btn btn-black" type="button"> <i class="fas fa-poll"></i> Ankete Git</button>
+    </a>
+
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    function gouser(url) {
+      windows.location = url;
+    }
+</script>
+
+{% endblock %}
+

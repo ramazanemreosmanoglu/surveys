@@ -1,0 +1,68 @@
+{# Ramazan Emre Osmanoğlu | Created with love... #}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %} Surveys |{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Ücretsiz anket sitesi.">
+    <meta name="keywords" content="surveys, anket, anketler, ücretsiz, Ramazan Osmanoğlu, anket sitesi, anket yapma sitesi, anket oylama">
+    <meta name="abstract" content="Anketler oluşturun, yorum yapın, anketleri oylayın ve daha fazlasını yapın!">
+    <meta name="theme-color" content="#37474F" />
+
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/all.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/style.css' %}">
+
+    <meta name="google-site-verification" content="FhDAs8KMho49IBMCht2RdyRvFEvorGGYHZoq0T-yLms" />
+
+</head>
+<body>
+
+
+{# MESSAGE SYSTEM #}
+
+{% block messages %}
+{% include 'messages.html' %}
+{% endblock %}
+
+<div class="jumbotron bg-transparent">
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+
+
+{% block footer %}
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Telif Hakkı &copy; Ramazan Emre Osmanoğlu 2019</p>
+      <p class="m-0 text-center text-white">Created with <i class="fas fa-heart"></i> and Django</p>
+
+    </div>
+    <!-- /.container -->
+  </footer>
+{% endblock %}
+
+
+
+<script src="{% static 'vendor/jquery.js' %}"></script>
+<script src="{% static 'vendor/bootstrap.min.js' %}"></script>
+<script src="{% static 'vendor/all.js' %}"></script>
+
+<script>
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ block.super }} Hesap Ayarları {% endblock %}
+
+{% block defnavbar %} {% endblock %}
+{% block content %}
+<style>
+    body {
+        background-color: #37474F;
+    }
+</style>
+
+
+    {% block messages %}
+    {{ block.super }}
+    {% endblock %}
+    <h1>Kişisel Bilgiler</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="fname">Ad:</label>
+            <input class="form-control" name="first_name" value="{{ request.user.first_name }}" id="fname">
+            <label for="lname">Soyad:</label> <input class="form-control" name="last_name" value="{{ request.user.last_name }}" id="lname">
+        </div>
+        <button class="btn btn-outline-success" type="submit">Kaydet</button>
+    </form>
+
+{% endblock %}
+
+{% block footer %} {% endblock %}

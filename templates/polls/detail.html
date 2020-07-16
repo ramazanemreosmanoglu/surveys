@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} {{ block.super }} {{ poll.title }} {% endblock %}
+
+
+
+
+
+
+
+{% block content %}
+
+{% if auth %}
+
+{% include 'auth_navbar.html' %}
+
+{% else %}
+
+{% include 'defnavbar.html' %}
+
+{% endif %}
+
+<style>
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #37474F;
+  background-color: #00C851;
+}
+</style>
+
+
+    {% block messages %}
+    {{ block.super }}
+    {% endblock %}
+    <br>
+
+<h2>{{ poll.title }}</h2>
+
+{% if poll.explanation %}
+<p> {{ poll.explanation }}</p>
+{% endif %}
+    <hr>
+<p><strong>Oylar</strong></p>
+    <h1> <i>{{ votesn }}</i></h1>
+    <hr>
+
+<form method="post">
+    {% csrf_token %}
+    {% for choice in choices %}
+    <div class="custom-control custom-radio">
+
+      <input class="custom-control-input" type="radio" name="choice" id="{{ choice.text }}" value="{{ choice.text }}" required >
+      <label class="custom-control-label" for="{{ choice.text }}">
+          {{ choice.text }}
+      </label>
+    </div>
+    {% endfor %}
+    <br>
+    <button class="btn btn-black" type="submit" {% if voted %} disabled {% endif %}>Oyla</button>
+    {% if voted %}
+    <p> Bu anketi zaten oylamışsın.</p>
+    {% endif %}
+
+</form>
+
+<h2>Sonuçlar</h2>
+
+{% if not voted %}
+
+<p>Sonuçları görmek için anketi oyla.</p>
+
+{% else %}
+
+{% for c in choices %}
+<div class="jumbotron bg-transparent">
+    <p>{{ c.text }} : {{ c.votes }} oy, {{ c.percent }}%</p>
+    <div class="progress">
+    <div class="progress-bar" style="width: {{ c.percent }}%;" role="progressbar" aria-valuenow="{{ c.percent }}" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+</div>
+{% endfor %}
+
+{% endif %}
+
+<br><br><br>
+<!-- Yorumlar -->
+<hr>
+    <h2>Yorumlar</h2>
+
+    {% if not auth %}
+    <p> Anketlere yorum yapmak istiyorsan üye olmalısın. </p>
+    {% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        {{ comment_form|crispy }}
+    </div>
+    <button type="submit" class="btn btn-outline-success" {% if not auth %} disabled {% endif %}>Yorum Yap</button>
+</form>
+<br><br>
+{% for comment in comments %}
+<div class="card bg-transparent comment-card">
+    <div class="card-body">
+        {{ comment.text }}
+        <br><small>@{{ comment.author.username }}</small>
+    </div>
+</div>
+{% empty %}
+<p> Hiç yorum yapılmamış... </p>
+{% endfor %}
+{% endblock %}

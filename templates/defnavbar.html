@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand js-scroll-trigger" href="/">
+        Surveys
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+
+        <form class="form-inline">
+          <a href="{% url 'accounts:register' %}"><button class="btn btn-outline-success" type="button">Kaydol</button></a>
+          <a href="{% url 'accounts:login' %}"> <button class="btn btn-outline-primary" type="button">Giriş Yap</button></a>
+        </form>
+      </ul>
+    </div>
+</nav>

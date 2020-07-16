@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ block.super }} {{ user.username }} {% endblock %}
+
+{% block content %}
+
+<h1 class="display-4">{{ user.get_full_name }} ({{ user.username }})</h1>
+
+<div class="jumbotron bg-transparent">
+    <h1>Kişisel Bilgiler</h1>
+
+    <p><strong>Adı:</strong> {{ user.first_name }}</p>
+    <p><strong>Soyadı:</strong> {{ user.last_name</p>
+</div>
+
+<div class="jumbotron bg-transparent">
+    <h1>Surveys Hesabı</h1>
+
+    <h3>{{ user.score }}</h3>
+    <i>Puan</i>
+
+    {{ user.get_rank_formatted|safe }}
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand js-scroll-trigger" href="/">
+
+        Surveys
+        </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav mr-auto">
+
+
+
+        {% if user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link" href="/admin">Yönetim</a>
+        </li>
+        {% endif %}
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-poll"></i> Anket
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'polls:add' %}">Anket Oluştur</a>
+
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user"></i> Hesap
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'accounts:settings' %}">Hesap Ayarları</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="{% url 'accounts:logout' %}">Çıkış Yap</a>
+
+          </div> 
+
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Diğer Sayfalar
+          </a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+          {% for i in NAV_PAGES %}
+              <a class="dropdown-item" href="/{{ i.url }}">{{ i.name }}</a>
+          {% endfor %}
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Ne aramıştınız?" aria-label="Search" name="q" value="{{ request.GET.q }}">
+            <button class="btn btn-black my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Arama</button>
+      </form>
+  </div>
+</nav>
