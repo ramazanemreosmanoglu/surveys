@@ -17,6 +17,9 @@ On back-end;
 
 * Django Framework
 
+There is score and ranking (level) system on surveys. If you create a survey, or vote an poll, you win score.
+System give ranks to you according to your score. more high levels, means more good profile!
+
 
 
 # [TR]
@@ -37,6 +40,9 @@ front-end için;
 back-end için;
 
 * Django web çatısı
+
+Surveys'te puan ve rütbe sistemi vardır. Anket yaparsanız, oylarsanız veya anketiniz oylanırsa puanlar kazanırsınız.
+Sistem size puanlarınıza göre rütbeler verecektir. Daha yüksek rütbe, daha iyi bir profil demektir!
 
 
 
